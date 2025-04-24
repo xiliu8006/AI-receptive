@@ -93,6 +93,7 @@ Based on the SIGIR 2020 paper:
 
 **LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation**  
 *Xiangnan He et al.*
+
 **Steffen Rendle et al. "BPR: Bayesian Personalized Ranking from Implicit Feedback."**  
 *S Rendle et al.*
 For academic use only.
