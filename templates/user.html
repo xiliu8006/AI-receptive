@@ -1,0 +1,117 @@
+<!-- templates/user.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User {{ user_id }} Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .genre-tag {
+      background-color: #f0f8ff;
+      color: #007bff;
+      padding: 2px 8px;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      margin: 2px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-light">
+<div class="container py-4">
+  <!-- User Info -->
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img src="/static/user_avatar.png" class="rounded-circle me-3" width="80" height="80" alt="User Avatar">
+      <div>
+        <h2>User {{ user_id }}</h2>
+        <div class="mb-2">
+          {% if user_profile %}
+            <span class="badge bg-secondary me-1">Age: {{ user_profile['age:token'] }}</span>
+            <span class="badge bg-success me-1">Gender: {{ user_profile['gender:token'] }}</span>
+            <span class="badge bg-info text-dark me-1">Occupation: {{ user_profile['occupation:token'] }}</span>
+            <span class="badge bg-warning text-dark me-1">ZIP: {{ user_profile['zip_code:token'] }}</span>
+          {% endif %}
+        </div>
+        <div>
+          {% for g in top_genres %}
+            <span class="badge rounded-pill bg-light text-primary border border-primary me-1">{{ g }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorite Movies -->
+  <h4 class="mb-3">💖 Favorite Movies</h4>
+  <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+    {% for movie in top_movies %}
+    <div class="col">
+      <div class="card shadow-sm border-0" style="border-radius: 16px;">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-2">🎬 {{ movie.title }}</h5>
+          <p class="card-text mb-1"><strong>📆 Year:</strong> {{ movie.year or 'N/A' }}</p>
+          <p class="card-text mb-1"><strong>⭐ Rating:</strong> {{ movie.rating }}</p>
+          <div><strong>🏷️ Genres:</strong><br>
+            {% for g in movie.genres.split() %}
+              <span class="genre-tag">{{ g }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Recommendations (shown right after favorites) -->
+  <h4 class="mb-3">🎯 Recommended For You</h4>
+  <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+    {% for movie in recommended %}
+    <div class="col">
+      <div class="card shadow-sm border-0" style="border-radius: 16px;">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-2">🎬 {{ movie.title }}</h5>
+          <p class="card-text mb-1"><strong>📆 Year:</strong> {{ movie.year or 'N/A' }}</p>
+          <p class="card-text mb-1"><strong>⭐ Rating:</strong> {{ movie.rating }}</p>
+          <div><strong>🏷️ Genres:</strong><br>
+            {% for g in movie.genres.split() %}
+              <span class="genre-tag">{{ g }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Viewing History -->
+  <h4 class="mb-3">📚 Viewing History</h4>
+  <div class="table-responsive mb-4">
+    <table class="table table-striped table-bordered bg-white">
+      <thead class="table-dark">
+        <tr>
+          <th>Movie Title</th>
+          <th>Genres</th>
+          <th>Views</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in history %}
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>
+            {% for g in item.genres.split() %}
+              <span class="genre-tag">{{ g }}</span>
+            {% endfor %}
+          </td>
+          <td>{{ item.views }}</td>
+          <td>{{ item.rating }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

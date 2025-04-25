@@ -165,5 +165,9 @@ for epoch in range(epochs):
 
     evaluate_all_metrics(model, k=10)
     # print(f"[Epoch {epoch+1}/{epochs}] Loss: {total_loss:.4f}, Recall@10: {recall:.4f}")
+    torch.save(model.user_emb.weight, "bpr_user_emb.pt")
+    torch.save(model.item_emb.weight, "bpr_item_emb.pt")
+    print("✅ Embeddings saved: bpr_user_emb.pt, bpr_item_emb.pt")
+
 
 print("✅ BPR training completed.")

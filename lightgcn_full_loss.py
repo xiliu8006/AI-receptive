@@ -168,5 +168,9 @@ for epoch in range(epochs):
         total_loss += loss.item()
     print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss:.4f}")
     evaluate_all_metrics(model, k=10)
+    
+user_emb, item_emb = model()
+torch.save(user_emb, "user_emb.pt")
+torch.save(item_emb, "item_emb.pt")
 
 print("✅ Training completed.")
