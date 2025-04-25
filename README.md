@@ -42,11 +42,17 @@ Example file: `ml-100k.inter`
 ./ml-100k/ml-100k.inter
 ```
 
-2. Run the script:
+2. Run the script to train our model:
 
 ```bash
 python bgr_full_loss.py
 python lightgcn_full_loss.py
+```
+
+3. Run the script to see our website (run on the local: http://127.0.0.1:8000):
+
+```bash
+python main.py
 ```
 
 ---
