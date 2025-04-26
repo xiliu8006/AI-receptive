@@ -19,8 +19,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # Load embeddings
-user_emb = torch.load("bpr_user_emb.pt")
-item_emb = torch.load("bpr_item_emb.pt")
+# model = torch.load('your_model.pth', map_location=torch.device('cpu'))
+user_emb = torch.load("bpr_user_emb.pt",  map_location=torch.device('cpu'))
+item_emb = torch.load("bpr_item_emb.pt",  map_location=torch.device('cpu'))
 
 # Load dataset and build lookup tables
 inter_file = './ml-100k/ml-100k.inter'
