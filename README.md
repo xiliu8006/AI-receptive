@@ -1,6 +1,11 @@
 # AI-receptive
 ## <span style="color:red; font-weight:bold">Note</span>: If you cannot see the project link in my report (my first report does not include the project link), please visit the website below to view my project.
 
+```
+https://movies-recomendation-xiliu8006.onrender.com
+
+```
+
 # BPR and LightGCN from Scratch (PyTorch)
 
 This repository provides a complete from-scratch implementation of the **LightGCN** and **BPR**recommendation model using **PyTorch**, without any dependency on RecBole. It is adapted to use datasets in **RecBole `.inter` format**, such as MovieLens 100K (`ml-100k`).
@@ -51,9 +56,10 @@ python bgr_full_loss.py
 python lightgcn_full_loss.py
 ```
 
-3. Run the script to see our website (run on the local: http://127.0.0.1:8000):
+3. Run the script to see our website (run on the local: http://127.0.0.1:8000), please take care of your environment:
 
 ```bash
+pip install -r requirements.txt
 python main.py
 ```
 
